@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.ajourn_app">
+    package="com.maneesha14w.ajourn_app">
    <application
-        android:label="ajourn_app"
+        android:label="Ajourn"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

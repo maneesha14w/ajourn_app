@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>138549252049-tiao4rb0andirurvseoolbeubu3uepnt.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.138549252049-tiao4rb0andirurvseoolbeubu3uepnt</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA1N3nfd0N6eJSPgcH3gqwuHnYxh_4ypbU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>138549252049</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.ajournApp</string>
+	<key>PROJECT_ID</key>
+	<string>ajourn-e73e3</string>
+	<key>STORAGE_BUCKET</key>
+	<string>ajourn-e73e3.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:138549252049:ios:68d4c600369593a1259af0</string>
+</dict>
+</plist>
