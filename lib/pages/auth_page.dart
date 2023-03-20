@@ -1,8 +1,8 @@
-import 'package:ajourn_app/pages/login_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'home_page.dart';
+import 'login_or_register.dart';
 
 /*
 
@@ -29,7 +29,7 @@ class AuthPage extends StatelessWidget {
             return HomePage();
           } else {
             // USER is not logged in
-            return const LoginPage();
+            return const LoginOrRegister();
           }
         },
       ),

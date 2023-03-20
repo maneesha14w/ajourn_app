@@ -7,29 +7,30 @@ import '../components/common/login_textfield.dart';
 
 /*
 
-LOGIN PAGE
+REGISTER PAGE
 
-This is the LoginPage, the first page led from the AuthPage if user is not authenticated.
+This is the RegisterPage,when the user clicks register.
 
-Once the user is authenticated, they are directed to the homepage.
+Once the user is created, they are directed to the homepage.
 
 */
 
-class LoginPage extends StatefulWidget {
+class RegisterPage extends StatefulWidget {
   final Function()? onTap;
-  const LoginPage({super.key, required this.onTap});
+  const RegisterPage({super.key, required this.onTap});
 
   @override
-  State<LoginPage> createState() => _LoginPageState();
+  State<RegisterPage> createState() => _RegisterPage();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _RegisterPage extends State<RegisterPage> {
   // text editing controllers for email and password
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
-  // sign user in method
-  void signIn() async {
+  // sign user up method
+  void signUp() async {
     //loading spinner
     showDialog(
         context: context,
@@ -39,15 +40,20 @@ class _LoginPageState extends State<LoginPage> {
           );
         });
 
+    // signing user in
     try {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: emailController.text, password: passwordController.text);
+      // password confirmation
+      if (passwordController.text == confirmPasswordController.text) {
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+            email: emailController.text, password: passwordController.text);
+      } else {
+        showErrorMessage('Passwords dont Match!');
+      }
       // popping the loader
-
       Navigator.pop(context);
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
-      // error
+      // any error that is caught
       showErrorMessage(e.code);
     }
   }
@@ -81,11 +87,11 @@ class _LoginPageState extends State<LoginPage> {
                   scale: 5,
                 ),
 
-                const SizedBox(height: 50),
+                const SizedBox(height: 30),
 
                 // Welcome back Text
                 Text(
-                  'Welcome back you\'ve been missed!',
+                  'Lets get started!',
                   style: TextStyle(
                     color: Colors.grey[700],
                     fontSize: 16,
@@ -112,26 +118,19 @@ class _LoginPageState extends State<LoginPage> {
 
                 const SizedBox(height: 10),
 
-                // forgot password?
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Forgot Password?',
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
-                    ],
-                  ),
+                // confirm password textfield
+                LoginTextField(
+                  controller: confirmPasswordController,
+                  hintText: 'Confirm Password',
+                  obscureText: true,
                 ),
 
-                const SizedBox(height: 25),
+                const SizedBox(height: 35),
 
                 // Log in button
                 LoginButton(
-                  onTap: signIn,
-                  buttonTxt: 'Sign In',
+                  onTap: signUp,
+                  buttonTxt: 'Sign Up',
                 ),
 
                 const SizedBox(height: 50),
@@ -184,13 +183,13 @@ class _LoginPageState extends State<LoginPage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Not a member? ',
+                      'Already have an account? ',
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                     GestureDetector(
                       onTap: widget.onTap,
                       child: const Text(
-                        'Register',
+                        'Log in',
                         style: TextStyle(
                             color: Colors.blue, fontWeight: FontWeight.bold),
                       ),
