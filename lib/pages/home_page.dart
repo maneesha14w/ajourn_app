@@ -1,69 +1,118 @@
+import 'package:ajourn_app/components/home/entry_card.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({super.key});
+/*
 
-  final user = FirebaseAuth.instance.currentUser!;
+H O M E P A G E
 
-  void signUserOut() {
-    FirebaseAuth.instance.signOut();
-  }
+*/
 
+void signUserOut() {
+  FirebaseAuth.instance.signOut();
+}
+
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        actions: [
-          IconButton(
-              onPressed: signUserOut, icon: const Icon(Icons.logout_outlined))
-        ],
+        elevation: 0.0,
+        title: const Text(
+          'Ajourn',
+        ),
+        titleTextStyle: const TextStyle(
+            color: Colors.black,
+            fontSize: 24,
+            fontFamily: 'PlayfairDisplay',
+            fontWeight: FontWeight.w500),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
       ),
-      body: Center(
-        child: Text('Logged In as ${user.email!}'),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(30),
+              child: Text(
+                "Your recent Journal's",
+                style: TextStyle(fontSize: 16),
+              ),
+            ),
+            const SizedBox(
+              height: 20,
+            ),
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection("/Entries")
+                      .snapshots(),
+                  builder: ((context, AsyncSnapshot<QuerySnapshot> snapshot) {
+                    //check connection state
+
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    if (snapshot.hasData) {
+                      return GridView(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2),
+                        children: snapshot.data!.docs
+                            .map((entry) => entryCard(
+                                () {},
+                                entry['entry_title'],
+                                entry['date'],
+                                entry['entry_content']))
+                            .toList(),
+                      );
+                    }
+                    // *TODO Error might trip due to this else
+
+                    return Padding(
+                      padding: EdgeInsets.fromLTRB(
+                          0, MediaQuery.of(context).size.height * 0.3, 0, 0),
+                      child: const Center(child: Text("No entries Found :(")),
+                    );
+                  })),
+            )
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            //   child: ListView.builder(
+            //     itemCount: 10,
+            //     itemBuilder: (context, index) => Container(
+            //       height: 200,
+            //       margin: const EdgeInsets.all(10),
+            //       decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(4),
+            //         color: Colors.grey[200],
+            //       ),
+            //     ),
+            //   ),
+            // ),
+          ],
+        ),
+      ),
+      floatingActionButton: const FloatingActionButton.extended(
+        onPressed: signUserOut,
+        backgroundColor: Colors.black,
+        icon: Icon(Icons.add),
+        label: Text(
+          'Create Entry',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
 }
-
-
-
-
-// /*
-
-// H O M E P A G E
-
-// This is the HomePage, the first page the user will see based off what was configured in the MainPage.
-// Currently it is just showing a vertical list of boxes.
-
-// What should the HomePage for your app look like?
-
-// You should place the most important aspect of your app on this page
-// as this is the very first page the user will see!
-
-// */
-
-// class HomePage extends StatelessWidget {
-//   const HomePage({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       backgroundColor: Colors.transparent,
-//       body: Padding(
-//         padding: const EdgeInsets.symmetric(horizontal: 10.0),
-//         child: ListView.builder(
-//           itemCount: 10,
-//           itemBuilder: (context, index) => Container(
-//             height: 200,
-//             margin: const EdgeInsets.all(10),
-//             decoration: BoxDecoration(
-//               borderRadius: BorderRadius.circular(4),
-//               color: Colors.grey[200],
-//             ),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
