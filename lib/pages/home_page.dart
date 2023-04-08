@@ -1,4 +1,6 @@
 import 'package:ajourn_app/components/home/entry_card.dart';
+import 'package:ajourn_app/pages/entry_maker.dart';
+import 'package:ajourn_app/pages/journal_reader.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,12 +32,12 @@ class _HomePageState extends State<HomePage> {
           'Ajourn',
         ),
         titleTextStyle: const TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontSize: 24,
             fontFamily: 'PlayfairDisplay',
             fontWeight: FontWeight.w500),
         centerTitle: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.black,
       ),
       body: SafeArea(
         child: Column(
@@ -70,11 +72,16 @@ class _HomePageState extends State<HomePage> {
                             const SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2),
                         children: snapshot.data!.docs
-                            .map((entry) => entryCard(
-                                () {},
-                                entry['entry_title'],
-                                entry['date'],
-                                entry['entry_content']))
+                            .map((entry) => entryCard(() {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                          JournalReader(entry),
+                                    ),
+                                  );
+                                }, entry['entry_title'], entry['date'],
+                                    entry['entry_content']))
                             .toList(),
                       );
                     }
@@ -87,28 +94,21 @@ class _HomePageState extends State<HomePage> {
                     );
                   })),
             )
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            //   child: ListView.builder(
-            //     itemCount: 10,
-            //     itemBuilder: (context, index) => Container(
-            //       height: 200,
-            //       margin: const EdgeInsets.all(10),
-            //       decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.circular(4),
-            //         color: Colors.grey[200],
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ],
         ),
       ),
-      floatingActionButton: const FloatingActionButton.extended(
-        onPressed: signUserOut,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: ((context) => const EntryMakerScreen()),
+            ),
+          );
+        },
         backgroundColor: Colors.black,
-        icon: Icon(Icons.add),
-        label: Text(
+        icon: const Icon(Icons.add),
+        label: const Text(
           'Create Entry',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
