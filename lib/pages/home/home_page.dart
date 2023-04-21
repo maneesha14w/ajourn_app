@@ -1,15 +1,9 @@
 import 'package:ajourn_app/components/home/entry_card.dart';
-import 'package:ajourn_app/pages/entry_maker.dart';
-import 'package:ajourn_app/pages/journal_reader.dart';
+import 'package:ajourn_app/pages/journal/entry_reader.dart';
+import 'package:ajourn_app/pages/journal/entry_maker.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
-/*
-
-H O M E P A G E
-
-*/
 
 void signUserOut() {
   FirebaseAuth.instance.signOut();

@@ -1,9 +1,9 @@
 import 'package:ajourn_app/services/auth_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../components/common/login_button.dart';
-import '../components/common/icon_tile.dart';
-import '../components/common/login_textfield.dart';
+import '../../components/common/login_button.dart';
+import '../../components/common/icon_tile.dart';
+import '../../components/common/login_textfield.dart';
 
 /*
 

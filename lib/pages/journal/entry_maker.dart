@@ -1,3 +1,4 @@
+import 'package:ajourn_app/services/prediction_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -58,13 +59,14 @@ class _EntryMakerScreenState extends State<EntryMakerScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () async {
+          Predictions().predictResponse(_content_controller.text);
+          //Predictions().predict(_content_controller.text);
           FirebaseFirestore.instance.collection('Entries').add({
             "entry_title": _title_controller.text,
             "date": date,
             "entry_content": _content_controller.text,
             "uid": FirebaseAuth.instance.currentUser!.uid
           }).then((value) {
-            print(value.id);
             Navigator.pop(context);
           }).catchError(
               (error) => print("Failure in adding entry! due to  $error"));

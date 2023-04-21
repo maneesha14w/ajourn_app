@@ -1,5 +1,5 @@
-import 'package:ajourn_app/pages/login_page.dart';
-import 'package:ajourn_app/pages/register_page.dart';
+import 'package:ajourn_app/pages/auth/login_page.dart';
+import 'package:ajourn_app/pages/auth/register_page.dart';
 
 import 'package:flutter/material.dart';
 
