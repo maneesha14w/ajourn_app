@@ -11,6 +11,15 @@ class AnxietyProvider extends ChangeNotifier {
   double get socialAnxiety => _socialAnxiety;
   double get anxiety => _anxiety;
 
+  late Stream<QuerySnapshot> _myStream;
+
+  Stream<QuerySnapshot> get myStream => _myStream;
+
+  set myStream(Stream<QuerySnapshot> value) {
+    _myStream = value;
+    notifyListeners();
+  }
+
   set healthAnxiety(double value) {
     _healthAnxiety = value;
     notifyListeners();
@@ -25,14 +34,6 @@ class AnxietyProvider extends ChangeNotifier {
     _anxiety = value;
     notifyListeners();
   }
-
-  // getAnxietyValues() {
-  //   DocumentSnapshot doc =    FirebaseFirestore.instance
-  //   .collection('myCollection')
-  //   .where('myField', isEqualTo: fieldValue)
-  //   .snapshots()
-  //   .map((querySnapshot) => querySnapshot.docs.first);
-  // }
 
   factory AnxietyProvider() => AnxietyProvider._();
 
