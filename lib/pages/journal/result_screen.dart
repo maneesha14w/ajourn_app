@@ -4,14 +4,19 @@ import 'package:flutter/material.dart';
 class ResultsScreen extends StatefulWidget {
   const ResultsScreen(this.uid, {super.key});
   final String uid;
+  
   @override
   State<ResultsScreen> createState() => _ResultsScreenState();
 }
 
 class _ResultsScreenState extends State<ResultsScreen> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+      ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance
@@ -28,10 +33,31 @@ class _ResultsScreenState extends State<ResultsScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   final document =
                       documents[index].data() as Map<String, dynamic>;
-                  final anxiety = document['anxiety'] ?? 'unknown';
+                  final anxiety = document['anxiety']*100 .round() ?? 'Pending';
+                  final healthAnxiety = document['healthanxiety']*100 .round() ?? 'Pending';
+                  final socialAnxiety = document['socialanxiety']*100.round() ?? 'Pending';
+
                   // do something with anxiety
-                  return ListTile(
-                    title: Text('Anxiety: $anxiety'),
+                  return Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ListTile(
+                          //leading: 
+                          title: Text('Anxiety: $anxiety %', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                          subtitle: Text('debfhijq'),
+                        ),
+                        ListTile(
+                          title: Text('Health Anxiety: $healthAnxiety %',
+                           style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24)),
+                        ),
+                        ListTile(
+                          title: Text('Social Anxiety: $socialAnxiety %', 
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 24)),
+                        ),
+                      ],
+                    ),
                   );
                 },
               );
