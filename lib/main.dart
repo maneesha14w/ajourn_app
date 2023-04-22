@@ -1,7 +1,9 @@
 import 'package:ajourn_app/pages/auth/auth_page.dart';
+import 'package:ajourn_app/providers/anxiety_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ajourn_app/firebase_options.dart';
+import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,11 +20,14 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(fontFamily: 'SourceSansPro'),
-      title: 'Ajourn',
-      debugShowCheckedModeBanner: false,
-      home: const AuthPage(),
+    return ChangeNotifierProvider<AnxietyProvider>(
+      create: (_) => AnxietyProvider(),
+      child: MaterialApp(
+        theme: ThemeData(fontFamily: 'SourceSansPro'),
+        title: 'Ajourn',
+        debugShowCheckedModeBanner: false,
+        home: const AuthPage(),
+      ),
     );
   }
 }

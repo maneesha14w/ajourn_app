@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:uuid/uuid.dart';
 
 class EntryMakerScreen extends StatefulWidget {
   const EntryMakerScreen({super.key});
@@ -59,14 +60,16 @@ class _EntryMakerScreenState extends State<EntryMakerScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
         onPressed: () async {
-          Predictions().predictResponse(_content_controller.text);
-          //Predictions().predict(_content_controller.text);
+          // Generate a v4 (random) id
+          var uuid = const Uuid();
+          String id = uuid.v4();
           FirebaseFirestore.instance.collection('Entries').add({
             "entry_title": _title_controller.text,
             "date": date,
             "entry_content": _content_controller.text,
-            "uid": FirebaseAuth.instance.currentUser!.uid
+            "uid": id
           }).then((value) {
+            Predictions().predictResponse(_content_controller.text, id);
             Navigator.pop(context);
           }).catchError(
               (error) => print("Failure in adding entry! due to  $error"));

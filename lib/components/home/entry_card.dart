@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+String myDate = '';
+
 Widget entryCard(Function()? onTap, String title, String date, String content) {
   return InkWell(
     onTap: onTap,

@@ -81,10 +81,8 @@ class _HomePageState extends State<HomePage> {
                     }
                     // *TODO Error might trip due to this else
 
-                    return Padding(
-                      padding: EdgeInsets.fromLTRB(
-                          0, MediaQuery.of(context).size.height * 0.3, 0, 0),
-                      child: const Center(child: Text("No entries Found :(")),
+                    return const Center(
+                      child: Center(child: Text("No entries Found :(")),
                     );
                   })),
             )
