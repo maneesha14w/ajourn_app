@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ResultsScreen extends StatefulWidget {
-  const ResultsScreen(this.uid, {super.key});
-  final String uid;
+  const ResultsScreen({super.key});
 
   @override
   State<ResultsScreen> createState() => _ResultsScreenState();
@@ -16,20 +15,16 @@ class _ResultsScreenState extends State<ResultsScreen> {
   Widget build(BuildContext context) {
     final anxietyProvider =
         Provider.of<AnxietyProvider>(context, listen: false);
-    //
-    anxietyProvider.myStream = FirebaseFirestore.instance
-        .collection('Entries')
-        .where('uid', isEqualTo: widget.uid)
-        .snapshots();
-    //
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
       ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
-          stream: Provider.of<AnxietyProvider>(context).myStream,
+          stream: FirebaseFirestore.instance
+              .collection('Entries')
+              .where('uid', isEqualTo: anxietyProvider.currentUid)
+              .snapshots(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasData) {
@@ -40,38 +35,33 @@ class _ResultsScreenState extends State<ResultsScreen> {
                 itemBuilder: (BuildContext context, int index) {
                   final document =
                       documents[index].data() as Map<String, dynamic>;
-                  final anxiety =
-                      document['anxiety'] * 100.round() ?? 'Pending';
-                  final healthAnxiety =
-                      document['healthanxiety'] * 100.round() ?? 'Pending';
-                  final socialAnxiety =
-                      document['socialanxiety'] * 100.round() ?? 'Pending';
+                  final anxiety = document['anxiety'] ?? 'Pending';
+                  final healthAnxiety = document['healthanxiety'] ?? 'Pending';
+                  final socialAnxiety = document['socialanxiety'] ?? 'Pending';
 
                   // do something with anxiety
-                  return Expanded(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        ListTile(
-                          //leading:
-                          title: Text('Anxiety: $anxiety %',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 24)),
-                          subtitle: Text('debfhijq'),
-                        ),
-                        ListTile(
-                          title: Text('Health Anxiety: $healthAnxiety %',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 24)),
-                        ),
-                        ListTile(
-                          title: Text('Social Anxiety: $socialAnxiety %',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 24)),
-                        ),
-                      ],
-                    ),
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      ListTile(
+                        //leading:
+                        title: Text('Anxiety: $anxiety %',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 24)),
+                        subtitle: Text('debfhijq'),
+                      ),
+                      ListTile(
+                        title: Text('Health Anxiety: $healthAnxiety %',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 24)),
+                      ),
+                      ListTile(
+                        title: Text('Social Anxiety: $socialAnxiety %',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 24)),
+                      ),
+                    ],
                   );
                 },
               );

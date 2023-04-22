@@ -3,6 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:provider/provider.dart';
 
 class AnxietyProvider extends ChangeNotifier {
+  String currentUid = '';
+
   double _healthAnxiety = 0.0;
   double _socialAnxiety = 0.0;
   double _anxiety = 0.0;

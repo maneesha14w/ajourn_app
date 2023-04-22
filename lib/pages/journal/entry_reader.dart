@@ -1,6 +1,9 @@
 import 'package:ajourn_app/pages/journal/result_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../providers/anxiety_provider.dart';
 
 class JournalReader extends StatefulWidget {
   JournalReader(this.entry, {super.key});
@@ -60,10 +63,13 @@ class _JournalReaderState extends State<JournalReader> {
         ),
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
+            final anxietyProvider =
+                Provider.of<AnxietyProvider>(context, listen: false);
+            anxietyProvider.currentUid = widget.entry['uid'];
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: ((context) => ResultsScreen(widget.entry['uid'])),
+                builder: ((context) => ResultsScreen()),
               ),
             );
           },
