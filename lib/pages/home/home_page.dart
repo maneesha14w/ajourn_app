@@ -1,3 +1,4 @@
+import 'package:ajourn_app/components/drawer.dart';
 import 'package:ajourn_app/components/home/entry_card.dart';
 import 'package:ajourn_app/pages/journal/entry_reader.dart';
 import 'package:ajourn_app/pages/journal/entry_maker.dart';
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: CustomDrawer(),
       appBar: AppBar(
         elevation: 0.0,
         title: const Text(
