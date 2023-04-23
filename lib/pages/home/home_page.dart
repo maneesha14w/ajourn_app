@@ -1,4 +1,4 @@
-import 'package:ajourn_app/components/drawer.dart';
+import 'package:ajourn_app/components/home/drawer.dart';
 import 'package:ajourn_app/components/home/entry_card.dart';
 import 'package:ajourn_app/pages/journal/entry_reader.dart';
 import 'package:ajourn_app/pages/journal/entry_maker.dart';
@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
         ),
         titleTextStyle: const TextStyle(
             color: Colors.white,
-            fontSize: 24,
+            fontSize: 30,
             fontFamily: 'PlayfairDisplay',
             fontWeight: FontWeight.w500),
         centerTitle: true,
@@ -41,10 +41,13 @@ class _HomePageState extends State<HomePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.all(30),
+              padding: EdgeInsets.fromLTRB(22, 30, 30, 30),
               child: Text(
                 "Your recent Journal's",
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(
+                    fontSize: 24,
+                    //fontFamily: 'PlayfairDisplay',
+                    fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(

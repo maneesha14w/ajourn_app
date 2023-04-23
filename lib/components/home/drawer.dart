@@ -1,6 +1,7 @@
 import 'package:ajourn_app/pages/journal/result_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ajourn_app/pages/cbt_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({super.key});
@@ -9,21 +10,6 @@ class CustomDrawer extends StatelessWidget {
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
-  }
-
-  // method to log user out
-  void logUserOut(BuildContext context) {
-    // pop drawer
-    Navigator.pop(context);
-    // pop app
-    Navigator.pop(context);
-    // go back to login page
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ResultsScreen(),
-      ),
-    );
   }
 
   @override
@@ -38,6 +24,30 @@ class CustomDrawer extends StatelessWidget {
           ),
 
           const SizedBox(height: 25),
+
+          // ABOUT PAGE
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            child: GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CBTScreen(),
+                  ),
+                );
+              },
+              child: ListTile(
+                leading: const Icon(Icons.health_and_safety),
+                title: Text(
+                  "C B T",
+                  style: TextStyle(color: Colors.grey[700]),
+                ),
+              ),
+            ),
+          ),
+
           // LOGOUT BUTTON
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
