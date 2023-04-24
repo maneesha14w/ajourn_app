@@ -18,6 +18,15 @@ class _ResultsScreenState extends State<ResultsScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.black,
+        title: const Text(
+          'Results',
+        ),
+        titleTextStyle: const TextStyle(
+            color: Colors.white,
+            fontSize: 30,
+            fontFamily: 'PlayfairDisplay',
+            fontWeight: FontWeight.w500),
+        centerTitle: true,
       ),
       body: SafeArea(
         child: StreamBuilder<QuerySnapshot>(
