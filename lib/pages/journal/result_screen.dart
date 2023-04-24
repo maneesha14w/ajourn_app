@@ -49,7 +49,6 @@ class _ResultsScreenState extends State<ResultsScreen> {
                         title: Text('Anxiety: $anxiety %',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 24)),
-                        subtitle: Text('debfhijq'),
                       ),
                       ListTile(
                         title: Text('Health Anxiety: $healthAnxiety %',

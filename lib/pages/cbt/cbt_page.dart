@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class CBTScreen extends StatefulWidget {
-  CBTScreen({super.key});
+  const CBTScreen({super.key});
 
   @override
   State<CBTScreen> createState() => _CBTScreenState();

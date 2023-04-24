@@ -4,7 +4,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 
-const String link = 'https://ajourn.azurewebsites.net/model_no_sent';
+const String link = 'https://ajourn.azurewebsites.net/model';
 const String username = "\$ajourn";
 const String password =
     "dNvxdqLs95ya0rJfvG4Czqxrz6H0XBECwFBBudS6H4meYoW5Rdsfnx2EjinD";

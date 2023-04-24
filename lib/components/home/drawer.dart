@@ -1,7 +1,6 @@
-import 'package:ajourn_app/pages/journal/result_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:ajourn_app/pages/cbt_page.dart';
+import 'package:ajourn_app/pages/cbt/cbt_page.dart';
 
 class CustomDrawer extends StatelessWidget {
   CustomDrawer({super.key});
@@ -34,7 +33,7 @@ class CustomDrawer extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CBTScreen(),
+                    builder: (context) => const CBTScreen(),
                   ),
                 );
               },

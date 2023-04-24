@@ -10,7 +10,7 @@ Widget entryCard(Function()? onTap, String title, String date, String content) {
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Colors.grey[200],
+        color: Color(0xFFDAE3E5),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -20,12 +20,12 @@ Widget entryCard(Function()? onTap, String title, String date, String content) {
             Text(
               title,
               style: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  fontFamily: "PlayfairDisplay"),
+                fontWeight: FontWeight.bold,
+                fontSize: 22,
+              ),
             ),
             const SizedBox(
-              height: 10,
+              height: 20,
             ),
             Text(
               date,
@@ -34,7 +34,7 @@ Widget entryCard(Function()? onTap, String title, String date, String content) {
               ),
             ),
             const SizedBox(
-              height: 18,
+              height: 30,
             ),
             Text(
               content,

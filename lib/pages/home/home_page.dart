@@ -84,10 +84,9 @@ class _HomePageState extends State<HomePage> {
                             .toList(),
                       );
                     }
-                    // *TODO Error might trip due to this else
 
                     return const Center(
-                      child: Center(child: Text("No entries Found :(")),
+                      child: Center(child: Text("No entries Found")),
                     );
                   })),
             )

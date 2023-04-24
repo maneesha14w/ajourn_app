@@ -15,13 +15,45 @@ class JournalReader extends StatefulWidget {
 class _JournalReaderState extends State<JournalReader> {
   @override
   Widget build(BuildContext context) {
+    final anxietyProvider =
+        Provider.of<AnxietyProvider>(context, listen: false);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
+          actions: [
+            PopupMenuButton(
+              itemBuilder: (context) => [
+                const PopupMenuItem(
+                  value: 1,
+                  child: Text(
+                    'Delete',
+                    style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                        color: Colors.red),
+                  ),
+                ),
+              ],
+              onSelected: (value) {
+                FirebaseFirestore.instance
+                    .collection('Entries')
+                    .where('uid', isEqualTo: widget.entry['uid'])
+                    .get()
+                    .then((querySnapshot) {
+                  WriteBatch batch = FirebaseFirestore.instance.batch();
+                  querySnapshot.docs.forEach((doc) {
+                    batch.delete(doc.reference);
+                  });
+                  batch.commit();
+                  Navigator.pop(context);
+                });
+              },
+            )
+          ],
         ),
         body: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(8.0, 10, 5, 5),
+            padding: const EdgeInsets.fromLTRB(30, 30, 30, 30),
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -31,12 +63,12 @@ class _JournalReaderState extends State<JournalReader> {
                       Text(
                         widget.entry['entry_title'],
                         style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                            fontFamily: "PlayfairDisplay"),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 22,
+                        ),
                       ),
                       const SizedBox(
-                        height: 10,
+                        height: 30,
                       ),
                       Text(
                         widget.entry['date'],
@@ -45,7 +77,7 @@ class _JournalReaderState extends State<JournalReader> {
                         ),
                       ),
                       const SizedBox(
-                        height: 18,
+                        height: 50,
                       ),
                       Text(
                         widget.entry['entry_content'],
