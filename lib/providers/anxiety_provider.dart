@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:provider/provider.dart';
 
-class AnxietyProvider extends ChangeNotifier {
+class MyProvider extends ChangeNotifier {
   String currentUid = '';
+
+  bool isEntryBtnDisabled = true;
+  bool isCbtEntryBtnDisabled = true;
 
   double _healthAnxiety = 0.0;
   double _socialAnxiety = 0.0;
@@ -37,7 +39,7 @@ class AnxietyProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  factory AnxietyProvider() => AnxietyProvider._();
+  factory MyProvider() => MyProvider._();
 
-  AnxietyProvider._();
+  MyProvider._();
 }

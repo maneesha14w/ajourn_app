@@ -10,7 +10,7 @@ Widget entryCard(Function()? onTap, String title, String date, String content) {
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: Color(0xFFDAE3E5),
+        color: const Color(0xFFDAE3E5),
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -19,6 +19,8 @@ Widget entryCard(Function()? onTap, String title, String date, String content) {
           children: [
             Text(
               title,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 2,
               style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 22,
@@ -34,10 +36,11 @@ Widget entryCard(Function()? onTap, String title, String date, String content) {
               ),
             ),
             const SizedBox(
-              height: 30,
+              height: 25,
             ),
             Text(
               content,
+              maxLines: 3,
               style: const TextStyle(fontSize: 18),
               overflow: TextOverflow.ellipsis,
             ),

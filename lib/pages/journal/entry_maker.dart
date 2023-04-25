@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:uuid/uuid.dart';
 
+import '../../components/common/text_fields.dart';
+
 class EntryMakerScreen extends StatefulWidget {
   const EntryMakerScreen({super.key});
 
@@ -13,8 +15,8 @@ class EntryMakerScreen extends StatefulWidget {
 
 class _EntryMakerScreenState extends State<EntryMakerScreen> {
   String date = DateFormat('yyyy-MM-dd – kk:mm').format(DateTime.now());
-  TextEditingController _title_controller = TextEditingController();
-  TextEditingController _content_controller = TextEditingController();
+  TextEditingController _titleController = TextEditingController();
+  TextEditingController _contentController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,31 +31,10 @@ class _EntryMakerScreenState extends State<EntryMakerScreen> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              TextField(
-                controller: _title_controller,
-                decoration: const InputDecoration(
-                    border: InputBorder.none, hintText: 'Title'),
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              Text(date),
-              const SizedBox(
-                height: 20,
-              ),
-              TextField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                controller: _content_controller,
-                decoration: const InputDecoration(
-                    border: InputBorder.none, hintText: 'Start Journaling..'),
-              ),
-            ],
-          ),
+          child: MyTextFields(
+              titleController: _titleController,
+              date: date,
+              contentController: _contentController),
         ),
       ),
       floatingActionButton: FloatingActionButton(
@@ -63,15 +44,16 @@ class _EntryMakerScreenState extends State<EntryMakerScreen> {
           var uuid = const Uuid();
           String id = uuid.v4();
           FirebaseFirestore.instance.collection('Entries').add({
-            "entry_title": _title_controller.text,
+            "entry_title": _titleController.text,
             "date": date,
-            "entry_content": _content_controller.text,
+            "entry_content": _contentController.text,
             "uid": id
           }).then((value) {
-            Predictions().predictResponse(_content_controller.text, id);
+            Predictions().predictResponse(_contentController.text, id);
             Navigator.pop(context);
-          }).catchError(
-              (error) => print("Failure in adding entry! due to  $error"));
+          }).catchError((error) {
+            Navigator.pop(context);
+          });
         },
         child: const Icon(Icons.save),
       ),

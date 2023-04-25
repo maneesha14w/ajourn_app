@@ -4,10 +4,10 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart';
 
-const String link = 'https://ajourn.azurewebsites.net/model';
-const String username = "\$ajourn";
+const String link = 'https://ajournapi.azurewebsites.net/model';
+const String username = "\$ajournApi";
 const String password =
-    "dNvxdqLs95ya0rJfvG4Czqxrz6H0XBECwFBBudS6H4meYoW5Rdsfnx2EjinD";
+    "9JcAwB1C8KclrAs7ZF4MQM9oGX5sqNsXqlMR01X01c4QxKEoZ6Yy9dCATM6f";
 String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
 
 class Predictions {

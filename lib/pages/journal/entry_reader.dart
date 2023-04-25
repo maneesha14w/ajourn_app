@@ -15,11 +15,17 @@ class JournalReader extends StatefulWidget {
 class _JournalReaderState extends State<JournalReader> {
   @override
   Widget build(BuildContext context) {
-    final anxietyProvider =
-        Provider.of<AnxietyProvider>(context, listen: false);
     return Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
+          title: Text(
+            widget.entry['date'],
+            style: const TextStyle(
+              fontWeight: FontWeight.w500,
+              fontSize: 20,
+            ),
+          ),
+          centerTitle: true,
           actions: [
             PopupMenuButton(
               itemBuilder: (context) => [
@@ -64,20 +70,11 @@ class _JournalReaderState extends State<JournalReader> {
                         widget.entry['entry_title'],
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 22,
+                          fontSize: 28,
                         ),
                       ),
                       const SizedBox(
-                        height: 30,
-                      ),
-                      Text(
-                        widget.entry['date'],
-                        style: const TextStyle(
-                          fontSize: 16,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 50,
+                        height: 60,
                       ),
                       Text(
                         widget.entry['entry_content'],
@@ -96,12 +93,12 @@ class _JournalReaderState extends State<JournalReader> {
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
             final anxietyProvider =
-                Provider.of<AnxietyProvider>(context, listen: false);
+                Provider.of<MyProvider>(context, listen: false);
             anxietyProvider.currentUid = widget.entry['uid'];
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: ((context) => ResultsScreen()),
+                builder: ((context) => const ResultsScreen()),
               ),
             );
           },

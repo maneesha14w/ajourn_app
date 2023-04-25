@@ -20,8 +20,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<AnxietyProvider>(
-      create: (_) => AnxietyProvider(),
+    return ChangeNotifierProvider<MyProvider>(
+      create: (_) => MyProvider(),
       child: MaterialApp(
         theme: ThemeData(fontFamily: 'SourceSansPro'),
         title: 'Ajourn',
