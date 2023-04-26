@@ -11,6 +11,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../../components/common/text_fields.dart';
 import '../../providers/anxiety_provider.dart';
 import '../../services/prediction_service.dart';
+import '../home/home_page.dart';
 
 class CBTScreen extends StatefulWidget {
   const CBTScreen({super.key});
@@ -120,6 +121,11 @@ class _CBTScreenState extends State<CBTScreen> {
                             Predictions()
                                 .predictResponse(_contentController.text, id);
                             Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => const HomePage()),
+                                ));
                           }).catchError((error) {
                             Navigator.pop(context);
                           });
