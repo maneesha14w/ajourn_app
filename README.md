@@ -8,7 +8,7 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
  
 ## Features
 
--Firebase Authenticated Users (Google or Email)
+- Firebase Authenticated Users (Google or Email)
 - Create and Edit Journal Entries
 - Watch CBT videos if anxiety level is too high
 - Reanalyse thoughts after CBT
