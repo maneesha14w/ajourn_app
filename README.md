@@ -18,8 +18,7 @@ alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 ## Tooling
 
 ```bash
-Flutter 3.13.9 • channel stable 
-Framework • revision d211f42860  • 2023-10-25 
+Flutter 3.10 • channel stable 
 Tools • Dart 3.1.5 • DevTools 2.25.0
 ```
     
