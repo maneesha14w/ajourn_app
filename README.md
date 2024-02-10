@@ -28,13 +28,13 @@ Tools • Dart 3.1.5 • DevTools 2.25.0
 Clone the project
 
 ```bash
-  git clone https://github.com/maneesha14w/ajourn_api
+  git clone https://github.com/maneesha14w/ajourn_app
 ```
 
 Go to the project directory
 
 ```bash
-  cd ajourn_api
+  cd ajourn_app
 ```
 
 Install dependencies
