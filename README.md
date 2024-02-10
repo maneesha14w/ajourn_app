@@ -1,5 +1,63 @@
 # ajourn_app
 
 [![CodeFactor](https://www.codefactor.io/repository/github/maneesha14w/ajourn_app/badge)](https://www.codefactor.io/repository/github/maneesha14w/ajourn_app) [![Codemagic build status](https://api.codemagic.io/apps/643039827a7deb58a2a736e6/643039827a7deb58a2a736e5/status_badge.svg)](https://codemagic.io/apps/643039827a7deb58a2a736e6/643039827a7deb58a2a736e5/latest_build)
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=gQjEJSIFffU
+" target="_blank"><img src="http://img.youtube.com/vi/gQjEJSIFffU/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
  
+## Features
+
+-Firebase Authenticated Users (Google or Email)
+- Create and Edit Journal Entries
+- Watch CBT videos if anxiety level is too high
+- Reanalyse thoughts after CBT
+- Cross platform
+
+
+## Tooling
+
+```bash
+Flutter 3.13.9 • channel stable 
+Framework • revision d211f42860  • 2023-10-25 
+Tools • Dart 3.1.5 • DevTools 2.25.0
+```
+    
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/maneesha14w/ajourn_api
+```
+
+Go to the project directory
+
+```bash
+  cd ajourn_api
+```
+
+Install dependencies
+
+```bash
+  flutter pub get 
+```
+
+Run the app
+
+```bash
+  flutter run --release
+```
+
+
+## Optimizations
+
+- Using Provider for state management.
+
+
+
+## Feedback
+
+If you have any feedback, please reach out to me at maneesha2018124@iit.ac.lk
+
 
