@@ -2,6 +2,8 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/maneesha14w/ajourn_app/badge)](https://www.codefactor.io/repository/github/maneesha14w/ajourn_app) [![Codemagic build status](https://api.codemagic.io/apps/643039827a7deb58a2a736e6/643039827a7deb58a2a736e5/status_badge.svg)](https://codemagic.io/apps/643039827a7deb58a2a736e6/643039827a7deb58a2a736e5/latest_build)
 
+An frontend application to showcase a novel multi-class deep learning model using a LSTM architecture for detecting multiple types of anxiety from text.
+
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=gQjEJSIFffU
 " target="_blank"><img src="http://img.youtube.com/vi/gQjEJSIFffU/0.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
